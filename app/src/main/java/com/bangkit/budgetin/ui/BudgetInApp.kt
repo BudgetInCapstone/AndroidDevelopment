@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bangkit.budgetin.ui.navigation.Screen
 import com.bangkit.budgetin.ui.screen.signin.SignInScreen
+import com.bangkit.budgetin.ui.screen.signup.SignUpScreen
 
 @Composable
 fun BudgetInApp(
@@ -24,13 +25,25 @@ fun BudgetInApp(
             modifier = Modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colors.background)
-        ){
-            composable(Screen.SignIn.route){
-                SignInScreen()
+        ) {
+            composable(Screen.SignIn.route) {
+                SignInScreen(
+                    navigateToSignUp = {
+                        navController.navigate(Screen.SignUp.route)
+                    }
+                )
             }
-            composable(Screen.SignUp.route){}
-            composable(Screen.Home.route){}
-            composable(Screen.AddPlan.route){}
+        composable(Screen.SignUp.route) {
+            SignUpScreen(
+                navigateToSignIn = {
+                    navController.navigate(Screen.SignIn.route){
+                        popUpTo(Screen.SignIn.route) {inclusive = true}
+                    }
+                }
+            )
         }
+        composable(Screen.Home.route) {}
+        composable(Screen.AddPlan.route) {}
     }
+}
 }

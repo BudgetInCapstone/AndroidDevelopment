@@ -21,13 +21,16 @@ import com.bangkit.budgetin.ui.layout.AuthLayout
 import com.bangkit.budgetin.ui.theme.BudgetInTheme
 
 @Composable
-fun SignInScreen() {
-    SignInContent()
+fun SignInScreen(
+    navigateToSignUp: () -> Unit = {},
+) {
+    SignInContent(navigateToSignUp = navigateToSignUp)
 }
 
 @Composable
 fun SignInContent(
     modifier: Modifier = Modifier,
+    navigateToSignUp: () -> Unit = {},
 ) {
     AuthLayout(
         title = "Sign In to Your Account",
@@ -91,7 +94,8 @@ fun SignInContent(
             ButtonApp(
                 text = "register",
                 color = MaterialTheme.colors.secondary,
-                modifier = Modifier.padding(bottom = 24.dp)
+                modifier = Modifier.padding(bottom = 24.dp),
+                onClick = navigateToSignUp
             )
         }
     }

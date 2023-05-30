@@ -18,10 +18,11 @@ import androidx.compose.ui.unit.dp
 fun ButtonApp(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = MaterialTheme.colors.primary
+    color: Color = MaterialTheme.colors.primary,
+    onClick: () -> Unit = {},
 ){
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding()
