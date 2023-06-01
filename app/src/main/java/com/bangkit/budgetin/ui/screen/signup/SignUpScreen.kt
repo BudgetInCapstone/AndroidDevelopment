@@ -16,6 +16,7 @@ import com.bangkit.budgetin.ui.components.AuthDivider
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.TextInput
 import com.bangkit.budgetin.ui.layout.AuthLayout
+import com.bangkit.budgetin.ui.theme.BudgetInTheme
 
 @Composable
 fun SignUpScreen(
@@ -94,5 +95,7 @@ fun SignUpContent(
 @Preview(showBackground = true)
 @Composable
 fun SignUpPreview() {
-    SignUpContent()
+    BudgetInTheme {
+        SignUpContent()
+    }
 }
