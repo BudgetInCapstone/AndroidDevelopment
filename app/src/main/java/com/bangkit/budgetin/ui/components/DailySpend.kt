@@ -24,11 +24,11 @@ import java.text.NumberFormat
 @Composable
 fun DailySpend(
     modifier: Modifier = Modifier,
-    dailySpend: Long = 1,
-    dailyMax: Long = 1,
+    dailySpend: Long,
+    dailyMax: Long,
 ) {
     var progressBarWidth by remember {
-        mutableStateOf(0F)
+        mutableStateOf(1F)
     }
 
     Column(
@@ -53,7 +53,7 @@ fun DailySpend(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "${dailySpend/dailyMax * 100}%",
+                text = "${(dailySpend.toFloat() / dailyMax.toFloat() * 100).toInt()}%",
                 style = MaterialTheme.typography.body1
             )
             Text(
@@ -84,7 +84,7 @@ fun DailySpend(
                     .fillMaxHeight()
                     .width(
                         with(LocalDensity.current) {
-                            (progressBarWidth * (dailySpend / dailyMax)).toDp()
+                            (progressBarWidth * (1 - dailySpend.toFloat() / dailyMax)).toDp()
                         }
                     )
                     .align(Alignment.CenterEnd)

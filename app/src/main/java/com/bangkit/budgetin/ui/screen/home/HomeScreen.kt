@@ -4,29 +4,14 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import com.bangkit.budgetin.R
 import com.bangkit.budgetin.ui.components.*
 import com.bangkit.budgetin.ui.theme.*
@@ -34,6 +19,7 @@ import com.bangkit.budgetin.ui.theme.*
 @Composable
 fun HomeScreen(
 ) {
+    // TODO: Cek apakah user punya plan
     val isHavePlan = true
     if (isHavePlan)
         HomeContent()
@@ -53,6 +39,7 @@ fun HomeContent(
         modifier = modifier
             .fillMaxWidth()
             .verticalScroll(state = rememberScrollState())
+            .padding(bottom = 16.dp)
     ) {
         CardBalance(
             modifier = Modifier.padding(horizontal = 24.dp),
@@ -120,6 +107,7 @@ fun HomeNoContent(
     Column(
         modifier = modifier
             .padding(horizontal = 24.dp)
+            .padding(bottom = 16.dp)
     ) {
         CardBalanceNoPlan()
         Text(
@@ -157,12 +145,12 @@ fun HomePreview() {
     }
 }
 
-@Preview(showBackground = true, device = Devices.PIXEL_2_XL)
-@Composable
-fun HomeNoContentPreview() {
-    BudgetInTheme() {
-        HomeNoContent(
-            modifier = Modifier.fillMaxSize()
-        )
-    }
-}
+//@Preview(showBackground = true, device = Devices.PIXEL_2_XL)
+//@Composable
+//fun HomeNoContentPreview() {
+//    BudgetInTheme {
+//        HomeNoContent(
+//            modifier = Modifier.fillMaxSize()
+//        )
+//    }
+//}
