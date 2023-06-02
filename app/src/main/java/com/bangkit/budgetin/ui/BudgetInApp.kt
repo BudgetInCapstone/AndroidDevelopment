@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bangkit.budgetin.ui.layout.AuthenticatedNavigation
+import com.bangkit.budgetin.ui.navigation.AuthenticatedNavigation
 import com.bangkit.budgetin.ui.navigation.Screen
 import com.bangkit.budgetin.ui.screen.signin.SignInScreen
 import com.bangkit.budgetin.ui.screen.signup.SignUpScreen

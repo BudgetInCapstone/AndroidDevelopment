@@ -19,7 +19,8 @@ private val LightColorPalette = lightColors(
     onPrimary = Color.White,
     secondary = Teal800,
     onSecondary = Color.White,
-    background = Gray200
+    background = Gray200,
+    onError = Red800
 
     /* Other default colors to override
     background = Color.White,

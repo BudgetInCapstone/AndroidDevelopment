@@ -1,4 +1,4 @@
-package com.bangkit.budgetin.ui.layout
+package com.bangkit.budgetin.ui.navigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,8 +17,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bangkit.budgetin.R
-import com.bangkit.budgetin.ui.navigation.NavigationItem
-import com.bangkit.budgetin.ui.navigation.Screen
 import com.bangkit.budgetin.ui.screen.home.HomeScreen
 import com.bangkit.budgetin.ui.screen.spend.SpendScreen
 
@@ -31,7 +29,7 @@ fun AuthenticatedNavigation(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 21.dp, start = 24.dp, end = 24.dp, bottom = 32.dp),
+                    .padding(top = 21.dp, start = 24.dp, end = 24.dp, bottom = 24.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -43,14 +41,15 @@ fun AuthenticatedNavigation(
                     painter = painterResource(id = R.drawable.ic_google),
                     contentDescription = "profile picture",
                     modifier = Modifier
-                        .size(40.dp),
+                        .size(30.dp),
                     contentScale = ContentScale.Crop
                 )
             }
         },
         bottomBar = {
             BottomNavigation(
-                modifier = Modifier,
+                modifier = Modifier
+                    .padding(top = 16.dp),
                 backgroundColor = Color.White
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
