@@ -9,8 +9,12 @@ color teal_700
 color white
 drawable bg_header
 drawable ic_google
+drawable ic_home
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_profile
+drawable ic_spend
+drawable ic_transaction
 drawable ic_visibility
 drawable ic_visibility_off
 font inter_bold

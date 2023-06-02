@@ -84,8 +84,12 @@ drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_google
+drawable ic_home
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_profile
+drawable ic_spend
+drawable ic_transaction
 drawable ic_visibility
 drawable ic_visibility_off
 drawable notification_action_background
