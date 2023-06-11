@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -44,13 +43,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bangkit.budgetin.R
-import com.bangkit.budgetin.ui.screen.addplan.AppBar
+import com.bangkit.budgetin.ui.components.ButtonApp
+import com.bangkit.budgetin.ui.theme.BudgetInTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RecommendedPlanScreen() {
+fun RecommendedPlanScreen(
+    navigateToHome: () -> Unit = {}
+) {
     Scaffold(
-        topBar = { AppBar(title = stringResource(R.string.recommended_plan_title)) },
         content = {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -72,7 +73,9 @@ fun RecommendedPlanScreen() {
             }
         },
         bottomBar = {
-            ButtonSection()
+            ButtonSection(
+                navigateToHome = navigateToHome
+            )
         }
     )
 }
@@ -321,19 +324,21 @@ fun MonthlyContent() {
 }
 
 @Composable
-fun ButtonSection() {
+fun ButtonSection(
+    navigateToHome: () -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Button(
-            onClick = { /* Handle button click */ },
+        ButtonApp(
+            text = stringResource(id = R.string.button_text),
+            color = MaterialTheme.colors.secondary,
+            onClick = { navigateToHome() },
             modifier = Modifier.weight(1f)
-        ) {
-            Text(text = stringResource(R.string.button_text))
-        }
+        )
         IconButton(
             onClick = { /* Handle map button click */ }
         ) {
@@ -345,5 +350,7 @@ fun ButtonSection() {
 @Preview(showBackground = true)
 @Composable
 fun RecommendedPlanScreenPreview() {
-    RecommendedPlanScreen()
+    BudgetInTheme {
+        RecommendedPlanScreen()
+    }
 }

@@ -27,6 +27,7 @@ drawable ic_theme
 drawable ic_transaction
 drawable ic_visibility
 drawable ic_visibility_off
+drawable menu1
 font inter_bold
 font inter_medium
 font inter_regular
@@ -34,6 +35,16 @@ font inter_semibold
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+string button_text
+string currency_type
+string initial_income_icon
+string initial_income_title
+string map_icon
+string menu_image
+string recommended_plan_title
+string tab_daily
+string tab_monthly
+string tab_weekly
 style Theme.BudgetIn
 xml backup_rules
 xml data_extraction_rules

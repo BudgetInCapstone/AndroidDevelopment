@@ -18,18 +18,25 @@ import com.bangkit.budgetin.ui.theme.*
 
 @Composable
 fun HomeScreen(
+    navigateToAddPlan: () -> Unit = {},
+    navigateToRecommendation: () -> Unit = {},
 ) {
     // TODO: Cek apakah user punya plan
     val isHavePlan = true
     if (isHavePlan)
-        HomeContent()
+        HomeContent(
+            navigateToRecommendation = navigateToRecommendation
+        )
     else
-        HomeNoContent()
+        HomeNoContent(
+            navigateToAddPlan = navigateToAddPlan
+        )
 }
 
 @Composable
 fun HomeContent(
     modifier: Modifier = Modifier,
+    navigateToRecommendation: () -> Unit = {},
 ) {
     // TODO: Diganti data dari API
     val transactionList = listOf(1, 2, 3, 4, 5, 6, 7)
@@ -42,8 +49,10 @@ fun HomeContent(
             .padding(bottom = 16.dp)
     ) {
         CardBalance(
-            modifier = Modifier.padding(horizontal = 24.dp),
-            percent = 0.5F
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+            percent = 0.5F,
+            onClick = {navigateToRecommendation()}
         )
 
         DailySpend(
@@ -103,13 +112,16 @@ fun HomeContent(
 @Composable
 fun HomeNoContent(
     modifier: Modifier = Modifier,
+    navigateToAddPlan: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
             .padding(horizontal = 24.dp)
             .padding(bottom = 16.dp)
     ) {
-        CardBalanceNoPlan()
+        CardBalanceNoPlan(
+            onClick = { navigateToAddPlan() }
+        )
         Text(
             text = "Last Transactions",
             style = MaterialTheme.typography.h1,

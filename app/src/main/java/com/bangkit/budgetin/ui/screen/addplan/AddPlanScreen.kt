@@ -1,6 +1,7 @@
 package com.bangkit.budgetin.ui.screen.addplan
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,13 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
@@ -33,18 +32,23 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bangkit.budgetin.ui.components.ButtonApp
+import com.bangkit.budgetin.ui.theme.BudgetInTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AddPlanScreen() {
-    Scaffold(
-        topBar = { AppBar(title = "Create Spend Plan") },
-        content = { CreateSpendPlanContent() }
+fun AddPlanScreen(
+    navigateToRecommendation: () -> Unit = {},
+) {
+    CreateSpendPlanContent(
+        navigateToRecommendation = navigateToRecommendation
     )
 }
 
 @Composable
-fun CreateSpendPlanContent() {
+fun CreateSpendPlanContent(
+    navigateToRecommendation: () -> Unit = {},
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -100,20 +104,21 @@ fun CreateSpendPlanContent() {
                 }
                 FloatingActionButton(
                     onClick = { /* Handle adding a spent plan */ },
-                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp, bottom = 32.dp)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 16.dp, bottom = 32.dp)
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "Add Spent Plan")
                 }
             }
         }
-        Button(
-            onClick = { /* Handle generating spend plan */ },
+        ButtonApp(
+            text = "GENERATE SPEND PLAN",
+            onClick = { navigateToRecommendation() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
-        ) {
-            Text(text = "GENERATE SPEND PLAN")
-        }
+        )
     }
 }
 
@@ -163,6 +168,7 @@ fun SpendPlanCard() {
 @Preview(showBackground = true)
 @Composable
 fun AddPlanScreenPreview() {
-    AddPlanScreen()
-
+    BudgetInTheme {
+        AddPlanScreen()
+    }
 }

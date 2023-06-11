@@ -8,6 +8,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">BudgetIn</string>
+    <string name="button_text">Button</string>
+    <string name="currency_type">Rp.</string>
+    <string name="initial_income_icon">Initial Income Icon</string>
+    <string name="initial_income_title">Initial Income</string>
+    <string name="map_icon">Map Icon</string>
+    <string name="menu_image">Image</string>
+    <string name="recommended_plan_title">Recommended Plan</string>
+    <string name="tab_daily">Daily</string>
+    <string name="tab_monthly">Monthly</string>
+    <string name="tab_weekly">Weekly</string>
     <style name="Theme.BudgetIn" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>

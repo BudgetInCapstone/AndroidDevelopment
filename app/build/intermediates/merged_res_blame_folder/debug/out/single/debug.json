@@ -8,32 +8,32 @@
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_profile.xml.flat",
-        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_profile.xml"
-    },
-    {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/mipmap-anydpi-v33_ic_launcher.xml.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/mipmap-anydpi-v33/ic_launcher.xml"
     },
     {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_term.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_term.png"
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_profile.xml.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_profile.xml"
+    },
+    {
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_privacy.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_privacy.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_profile_detail.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_profile_detail.png"
-    },
-    {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_theme.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_theme.png"
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_theme.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_theme.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/font_inter_bold.ttf.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/font/inter_bold.ttf"
+    },
+    {
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_profile_detail.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_profile_detail.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -72,6 +72,10 @@
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_language.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_language.png"
+    },
+    {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/mipmap-mdpi/ic_launcher.webp"
     },
@@ -104,20 +108,24 @@
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/font/inter_medium.ttf"
     },
     {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_account.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_account.png"
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_password.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_password.png"
+    },
+    {
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_account.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_account.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_spend.xml.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_spend.xml"
     },
     {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_language.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_language.png"
-    },
-    {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_visibility_off.xml.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_visibility_off.xml"
+    },
+    {
+        "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_term.png.flat",
+        "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_term.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_food.png.flat",
@@ -136,16 +144,12 @@
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable/ic_transaction.xml"
     },
     {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_privacy.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_privacy.png"
+        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_menu1.png.flat",
+        "source": "com.bangkit.budgetin.app-main-54:/drawable/menu1.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-main-54:/drawable-v24/ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "com.bangkit.budgetin.app-merged_res-52:/drawable_ic_password.png.flat",
-        "source": "com.bangkit.budgetin.app-main-54:/drawable/ic_password.png"
     },
     {
         "merged": "/home/kevin/.gradle/daemon/7.5/com.bangkit.budgetin.app-merged_res-52:/drawable_ic_empty_plan.png.flat",
