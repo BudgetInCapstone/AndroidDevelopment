@@ -14,7 +14,7 @@ import com.bangkit.budgetin.ui.screen.signin.SignInScreen
 import com.bangkit.budgetin.ui.screen.signup.SignUpScreen
 
 @Composable
-fun BudgetInApp(
+fun AppNavigation(
     navController: NavHostController = rememberNavController(),
 ) {
     NavHost(
@@ -47,7 +47,9 @@ fun BudgetInApp(
             )
         }
         composable(Screen.Home.route) {
-            AuthenticatedNavigation()
+            AuthenticatedNavigation(
+                parentNavController = navController
+            )
         }
     }
 }
