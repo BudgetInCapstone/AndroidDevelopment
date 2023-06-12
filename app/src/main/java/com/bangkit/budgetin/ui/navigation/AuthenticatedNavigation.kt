@@ -18,9 +18,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bangkit.budgetin.R
-import com.bangkit.budgetin.ui.item.BottomNavigationItem
-import com.bangkit.budgetin.ui.item.NavigationItem
+import com.bangkit.budgetin.ui.itemview.BottomNavigationItem
 import com.bangkit.budgetin.ui.screen.addplan.AddPlanScreen
+import com.bangkit.budgetin.ui.itemview.NavigationItem
 import com.bangkit.budgetin.ui.screen.home.HomeScreen
 import com.bangkit.budgetin.ui.screen.profile.ProfileScreen
 import com.bangkit.budgetin.ui.screen.recommend.RecommendedPlanScreen
