@@ -18,9 +18,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bangkit.budgetin.R
+import com.bangkit.budgetin.ui.itemview.BottomNavigationItem
+import com.bangkit.budgetin.ui.screen.addplan.AddPlanScreen
 import com.bangkit.budgetin.ui.itemview.NavigationItem
 import com.bangkit.budgetin.ui.screen.home.HomeScreen
 import com.bangkit.budgetin.ui.screen.profile.ProfileScreen
+import com.bangkit.budgetin.ui.screen.recommend.RecommendedPlanScreen
 import com.bangkit.budgetin.ui.screen.spend.SpendScreen
 
 @Composable
@@ -31,26 +34,37 @@ fun AuthenticatedNavigation(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val navigationItems = listOf(
-        NavigationItem(
+    val bottomNavigationItems = listOf(
+        BottomNavigationItem(
             title = "Home",
             icon = painterResource(id = R.drawable.ic_home),
             screen = Screen.Home,
         ),
-        NavigationItem(
-            title = "Daily Report",
+        BottomNavigationItem(
+            title = "Spend",
             icon = painterResource(id = R.drawable.ic_spend),
             screen = Screen.Spend,
         ),
-        NavigationItem(
+        BottomNavigationItem(
             title = "Transaction",
             icon = painterResource(id = R.drawable.ic_transaction),
             screen = Screen.Transaction,
         ),
-        NavigationItem(
+        BottomNavigationItem(
             title = "Profile",
             icon = painterResource(id = R.drawable.ic_profile),
             screen = Screen.Profile,
+        )
+    )
+
+    val navigationItems = listOf(
+        NavigationItem(
+            title = "Create Spend Plan",
+            screen = Screen.AddPlan
+        ),
+        NavigationItem(
+            title = "Recommended Plan",
+            screen = Screen.Recommendation
         )
     )
 
@@ -81,7 +95,9 @@ fun AuthenticatedNavigation(
                     )
                 } else {
                     Text(
-                        text = navigationItems.find {
+                        text = bottomNavigationItems.find {
+                            it.screen.route == currentRoute
+                        }?.title ?: navigationItems.find {
                             it.screen.route == currentRoute
                         }?.title ?: "",
                         style = MaterialTheme.typography.h1
@@ -94,7 +110,7 @@ fun AuthenticatedNavigation(
                 modifier = Modifier,
                 backgroundColor = Color.White
             ) {
-                navigationItems.map { item ->
+                bottomNavigationItems.map { item ->
                     BottomNavigationItem(
                         icon = {
                             Icon(
@@ -127,7 +143,14 @@ fun AuthenticatedNavigation(
 
             ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToAddPlan = {
+                        navController.navigate(Screen.AddPlan.route)
+                    },
+                    navigateToRecommendation = {
+                        navController.navigate(Screen.Recommendation.route)
+                    }
+                )
             }
             composable(Screen.Spend.route) {
                 SpendScreen()
@@ -137,7 +160,24 @@ fun AuthenticatedNavigation(
                 ProfileScreen(
                     navigateToSignin = {
                         parentNavController.navigate(Screen.SignIn.route) {
-                            popUpTo(Screen.Home.route) {inclusive = true}
+                            popUpTo(Screen.Home.route) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    }
+                )
+            }
+            composable(Screen.AddPlan.route) {
+                AddPlanScreen(
+                    navigateToRecommendation = {
+                        navController.navigate(Screen.Recommendation.route)
+                    }
+                )
+            }
+            composable(Screen.Recommendation.route) {
+                RecommendedPlanScreen(
+                    navigateToHome = {
+                        navController.navigate(Screen.Home.route) {
+                            popUpTo(Screen.Home.route) { inclusive = true }
                             launchSingleTop = true
                         }
                     }

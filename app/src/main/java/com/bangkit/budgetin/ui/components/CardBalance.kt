@@ -2,6 +2,7 @@ package com.bangkit.budgetin.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,6 +33,7 @@ fun CardBalance(
     modifier: Modifier = Modifier,
     percent: Float = 1F,
     balance: Long = 3000000,
+    onClick: () -> Unit = {}
 ) {
     var boxWidth by remember {
         mutableStateOf(1F)
@@ -53,6 +55,7 @@ fun CardBalance(
                     radius = (boxWidth * 8.5F / 10)
                 )
             )
+            .clickable { onClick() }
             .padding(24.dp)
     ) {
         Box(
