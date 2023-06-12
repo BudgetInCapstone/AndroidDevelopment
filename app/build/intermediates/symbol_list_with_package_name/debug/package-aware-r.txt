@@ -102,6 +102,7 @@ drawable ic_theme
 drawable ic_transaction
 drawable ic_visibility
 drawable ic_visibility_off
+drawable menu1
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low

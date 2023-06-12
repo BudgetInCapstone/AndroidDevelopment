@@ -2,25 +2,20 @@ package com.bangkit.budgetin.ui.screen.profile
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bangkit.budgetin.R
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.ProfileItemView
-import com.bangkit.budgetin.ui.item.ProfileGroupItem
-import com.bangkit.budgetin.ui.item.ProfileItem
+import com.bangkit.budgetin.ui.itemview.ProfileGroupItem
+import com.bangkit.budgetin.ui.itemview.ProfileItem
 import com.bangkit.budgetin.ui.theme.BudgetInTheme
 import com.bangkit.budgetin.ui.theme.Teal400
 

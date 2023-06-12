@@ -27,6 +27,7 @@ drawable ic_theme
 drawable ic_transaction
 drawable ic_visibility
 drawable ic_visibility_off
+drawable menu1
 font inter_bold
 font inter_medium
 font inter_regular

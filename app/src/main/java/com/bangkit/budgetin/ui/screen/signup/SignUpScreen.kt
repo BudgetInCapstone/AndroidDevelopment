@@ -45,7 +45,7 @@ fun SignUpContent(
                 placeHolder = "Name",
                 value = "",
                 onValueChange = {},
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Username", style = MaterialTheme.typography.h3)
             TextInput(
@@ -53,7 +53,7 @@ fun SignUpContent(
                 placeHolder = "Username",
                 value = "",
                 onValueChange = {},
-                modifier = Modifier.padding(bottom = 16.dp),
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
             )
             Text(text = "Email", style = MaterialTheme.typography.h3)
             TextInput(
@@ -61,7 +61,7 @@ fun SignUpContent(
                 placeHolder = "Email",
                 value = "",
                 onValueChange = {},
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
@@ -70,7 +70,7 @@ fun SignUpContent(
                 value = "",
                 onValueChange = {},
                 isPassword = true,
-                modifier = Modifier.padding(bottom = 16.dp),
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
             )
 
             ButtonApp(

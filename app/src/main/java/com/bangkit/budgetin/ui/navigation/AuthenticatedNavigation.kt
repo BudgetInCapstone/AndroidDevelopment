@@ -18,7 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bangkit.budgetin.R
-import com.bangkit.budgetin.ui.item.NavigationItem
+import com.bangkit.budgetin.ui.itemview.NavigationItem
 import com.bangkit.budgetin.ui.screen.home.HomeScreen
 import com.bangkit.budgetin.ui.screen.profile.ProfileScreen
 import com.bangkit.budgetin.ui.screen.spend.SpendScreen
@@ -38,7 +38,7 @@ fun AuthenticatedNavigation(
             screen = Screen.Home,
         ),
         NavigationItem(
-            title = "Spend",
+            title = "Daily Report",
             icon = painterResource(id = R.drawable.ic_spend),
             screen = Screen.Spend,
         ),
