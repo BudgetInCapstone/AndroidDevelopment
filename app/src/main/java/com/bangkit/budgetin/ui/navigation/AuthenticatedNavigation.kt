@@ -25,6 +25,7 @@ import com.bangkit.budgetin.ui.screen.home.HomeScreen
 import com.bangkit.budgetin.ui.screen.profile.ProfileScreen
 import com.bangkit.budgetin.ui.screen.recommend.RecommendedPlanScreen
 import com.bangkit.budgetin.ui.screen.spend.SpendScreen
+import com.bangkit.budgetin.ui.screen.transaction.TransactionScreen
 
 @Composable
 fun AuthenticatedNavigation(
@@ -155,7 +156,9 @@ fun AuthenticatedNavigation(
             composable(Screen.Spend.route) {
                 SpendScreen()
             }
-            composable(Screen.Transaction.route) {}
+            composable(Screen.Transaction.route) {
+                TransactionScreen()
+            }
             composable(Screen.Profile.route) {
                 ProfileScreen(
                     navigateToSignin = {
