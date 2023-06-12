@@ -6,10 +6,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,24 +18,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.bangkit.budgetin.R
 
 @Composable
 fun TextInput(
     modifier: Modifier = Modifier,
-    leadingIcon: ImageVector,
+    leadingIcon: ImageVector? = null,
     placeHolder: String,
+    placeHolderColor: Color = MaterialTheme.colors.secondary,
     value: String,
-    onValueChange: (value: String) -> Unit = {},
+    onValueChange: (value: String) -> Unit = { },
     isPassword: Boolean = false,
+    textFieldColors: TextFieldColors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
 ) {
-    val isShow = rememberSaveable{ mutableStateOf(false) }
+    val isShow = rememberSaveable { mutableStateOf(false) }
     val trailingIcon =
         painterResource(
             id = if (isShow.value) R.drawable.ic_visibility
             else R.drawable.ic_visibility_off
         )
+
 
     OutlinedTextField(
         value = value,
@@ -46,42 +47,43 @@ fun TextInput(
         singleLine = true,
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 8.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.White)
-        ,
+            .background(Color.White),
         shape = RoundedCornerShape(8.dp),
-        leadingIcon = {
-            Icon(
-                imageVector = leadingIcon,
-                contentDescription = "$placeHolder icon",
-                modifier = Modifier.padding(start = 8.dp)
-            )
-        },
-        trailingIcon = {
-            if(isPassword){
+        colors = textFieldColors,
+        leadingIcon = if (leadingIcon != null) {
+            {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = "$placeHolder icon",
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+        } else null,
+        trailingIcon = if (isPassword) {
+            {
                 Icon(
                     painter = trailingIcon,
                     contentDescription = "",
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null
-                    ){
-                        isShow.value = !isShow.value
-                    }
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) {
+                            isShow.value = !isShow.value
+                        }
                 )
             }
-        },
+        } else null,
         placeholder = {
             Text(
                 text = placeHolder,
-                color = MaterialTheme.colors.secondary,
+                color = placeHolderColor,
                 modifier = Modifier.alpha(0.7F)
             )
         },
         textStyle = MaterialTheme.typography.subtitle1,
-        visualTransformation = PasswordVisualTransformation()
+        visualTransformation = if(isPassword)PasswordVisualTransformation() else VisualTransformation.None
     )
 }

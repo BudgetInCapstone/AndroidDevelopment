@@ -1,4 +1,4 @@
-package com.bangkit.budgetin.ui.item
+package com.bangkit.budgetin.ui.itemview
 
 import androidx.compose.ui.graphics.painter.Painter
 import com.bangkit.budgetin.ui.navigation.Screen

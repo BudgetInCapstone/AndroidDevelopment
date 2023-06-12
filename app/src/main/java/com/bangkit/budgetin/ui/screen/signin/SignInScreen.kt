@@ -51,7 +51,7 @@ fun SignInContent(
                 placeHolder = "Email",
                 value = "",
                 onValueChange = {},
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
@@ -60,7 +60,7 @@ fun SignInContent(
                 value = "",
                 onValueChange = {},
                 isPassword = true,
-                modifier = Modifier.padding(bottom = 16.dp),
+                modifier = Modifier.padding(top = 8.dp,bottom = 16.dp),
             )
 
             Text(
