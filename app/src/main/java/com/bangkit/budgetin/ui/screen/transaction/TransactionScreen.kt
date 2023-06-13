@@ -41,7 +41,8 @@ fun TransactionContent(
         Dropdown(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
-                .padding(bottom = 8.dp),
+                .padding(bottom = 8.dp)
+                .widthIn(max = 180.dp),
             options = listOf("Menu Asc", "Menu Desc", "Date Asc", "Date Desc"),
             initialValue = "Sort",
             onValueChange = { }

@@ -47,7 +47,10 @@ fun SpendContent(
         Column(
             modifier = modifier
                 .verticalScroll(rememberScrollState())
-                .padding(bottom = with(LocalDensity.current) { buttonHeight.height.toDp() + 48.dp }) // 48.dp = padding button + padding column
+                .padding(
+                    // 48.dp = padding button + padding column
+                    bottom = with(LocalDensity.current) { buttonHeight.height.toDp() + 48.dp }
+                )
                 .padding(horizontal = 24.dp)
                 .align(Alignment.TopCenter),
             horizontalAlignment = Alignment.CenterHorizontally,

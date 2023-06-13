@@ -44,6 +44,7 @@ fun ReportCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Dropdown(
+                    modifier = Modifier.widthIn(max = 120.dp),
                     options = productList,
                     onValueChange = { onProductTypeChange(it) },
                     initialValue =
@@ -75,6 +76,7 @@ fun ReportCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Dropdown(
+                    modifier = Modifier.widthIn(max = 120.dp),
                     options = currencyList,
                     onValueChange = { onCurrencyTypeChange(it) },
                     initialValue =
