@@ -6,6 +6,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -13,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bangkit.budgetin.R
+import com.bangkit.budgetin.api.item.SignInItem
 import com.bangkit.budgetin.ui.components.AuthDivider
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.SignInBox
@@ -37,6 +40,10 @@ fun SignInContent(
     navigateToSignUp: () -> Unit = {},
     navigateToHome: () -> Unit = {},
 ) {
+    val signInForm = rememberSaveable {
+        mutableStateOf(SignInItem())
+    }
+
     AuthLayout(
         title = "Sign In to Your Account",
         modifier = modifier
@@ -49,18 +56,27 @@ fun SignInContent(
             TextInput(
                 leadingIcon = Icons.Default.Email,
                 placeHolder = "Email",
-                value = "",
-                onValueChange = {},
+                value = signInForm.value.email,
+                onValueChange = {
+                    signInForm.value = signInForm.value.copy(email = it)
+                },
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
                 leadingIcon = Icons.Default.Lock,
                 placeHolder = "Password",
-                value = "",
-                onValueChange = {},
+                value = signInForm.value.password,
+                onValueChange = {
+                    signInForm.value = signInForm.value.copy(password = it)
+                },
+                inputValidation = {password ->
+                    if (password.length < 8)
+                        "Password at least have 8 characters"
+                    else null
+                },
                 isPassword = true,
-                modifier = Modifier.padding(top = 8.dp,bottom = 16.dp),
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
             )
 
             Text(

@@ -9,9 +9,12 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bangkit.budgetin.api.item.SignUpItem
 import com.bangkit.budgetin.ui.components.AuthDivider
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.TextInput
@@ -31,6 +34,10 @@ fun SignUpContent(
     modifier: Modifier = Modifier,
     navigateToSignIn: () -> Unit = {},
 ) {
+    val signUpForm = rememberSaveable {
+        mutableStateOf(SignUpItem())
+    }
+
     AuthLayout(
         title = "Sign Up to Your Account",
         modifier = modifier
@@ -43,32 +50,45 @@ fun SignUpContent(
             TextInput(
                 leadingIcon = Icons.Filled.Edit,
                 placeHolder = "Name",
-                value = "",
-                onValueChange = {},
+                value = signUpForm.value.name,
+                onValueChange = {
+                    signUpForm.value = signUpForm.value.copy(name = it)
+                },
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Username", style = MaterialTheme.typography.h3)
             TextInput(
                 leadingIcon = Icons.Filled.Person,
                 placeHolder = "Username",
-                value = "",
-                onValueChange = {},
+                value = signUpForm.value.username,
+                onValueChange = {
+                    signUpForm.value = signUpForm.value.copy(username = it)
+                },
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
             )
             Text(text = "Email", style = MaterialTheme.typography.h3)
             TextInput(
                 leadingIcon = Icons.Default.Email,
                 placeHolder = "Email",
-                value = "",
-                onValueChange = {},
+                value = signUpForm.value.email,
+                onValueChange = {
+                    signUpForm.value = signUpForm.value.copy(email = it)
+                },
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
                 leadingIcon = Icons.Default.Lock,
                 placeHolder = "Password",
-                value = "",
-                onValueChange = {},
+                value = signUpForm.value.password,
+                onValueChange = {
+                    signUpForm.value = signUpForm.value.copy(password = it)
+                },
+                inputValidation = { password ->
+                    if (password.length < 8)
+                        "Password at least have 8 characters"
+                    else null
+                },
                 isPassword = true,
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
             )
