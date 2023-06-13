@@ -14,7 +14,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bangkit.budgetin.api.item.SignUpItem
+import com.bangkit.budgetin.api.request.SignUpRequest
 import com.bangkit.budgetin.ui.components.AuthDivider
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.TextInput
@@ -35,7 +35,7 @@ fun SignUpContent(
     navigateToSignIn: () -> Unit = {},
 ) {
     val signUpForm = rememberSaveable {
-        mutableStateOf(SignUpItem())
+        mutableStateOf(SignUpRequest())
     }
 
     AuthLayout(

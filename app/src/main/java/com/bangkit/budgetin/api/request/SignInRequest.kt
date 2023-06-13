@@ -1,10 +1,10 @@
-package com.bangkit.budgetin.api.item
+package com.bangkit.budgetin.api.request
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SignInItem(
+data class SignInRequest(
     val email: String = "",
     val password: String = "",
 ) : Parcelable
