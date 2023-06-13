@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bangkit.budgetin.R
-import com.bangkit.budgetin.api.item.SignInItem
+import com.bangkit.budgetin.api.request.SignInRequest
 import com.bangkit.budgetin.ui.components.AuthDivider
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.SignInBox
@@ -41,7 +41,7 @@ fun SignInContent(
     navigateToHome: () -> Unit = {},
 ) {
     val signInForm = rememberSaveable {
-        mutableStateOf(SignInItem())
+        mutableStateOf(SignInRequest())
     }
 
     AuthLayout(

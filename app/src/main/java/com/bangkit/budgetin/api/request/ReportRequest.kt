@@ -1,6 +1,6 @@
-package com.bangkit.budgetin.api.item
+package com.bangkit.budgetin.api.request
 
-data class ReportItem(
+data class ReportRequest(
     val productType: String? = null,
     val productName: String? = null,
     val currencyType: String? = null,
