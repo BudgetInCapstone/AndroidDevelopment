@@ -20,6 +20,7 @@ fun ButtonApp(
     text: String,
     color: Color = MaterialTheme.colors.primary,
     onClick: () -> Unit = {},
+    enabled: Boolean = true
 ){
     Button(
         onClick = onClick,
@@ -27,7 +28,12 @@ fun ButtonApp(
             .fillMaxWidth()
             .padding()
             .clip(RoundedCornerShape(8.dp)),
-        colors = ButtonDefaults.buttonColors(color)
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor =  color,
+            disabledBackgroundColor = Color.Gray,
+            disabledContentColor = Color.DarkGray
+        ),
+        enabled = enabled
     ) {
         Text(
             text = text.uppercase(),

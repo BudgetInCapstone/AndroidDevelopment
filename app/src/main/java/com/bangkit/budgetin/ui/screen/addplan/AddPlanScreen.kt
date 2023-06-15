@@ -1,7 +1,6 @@
 package com.bangkit.budgetin.ui.screen.addplan
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +31,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bangkit.budgetin.api.request.RecommendationRequest
+import com.bangkit.budgetin.ui.ViewModelFactory
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.theme.BudgetInTheme
 
@@ -39,15 +41,20 @@ import com.bangkit.budgetin.ui.theme.BudgetInTheme
 @Composable
 fun AddPlanScreen(
     navigateToRecommendation: () -> Unit = {},
+    addPlanViewModel: AddPlanViewModel = viewModel(
+        factory = ViewModelFactory()
+    ),
 ) {
     CreateSpendPlanContent(
-        navigateToRecommendation = navigateToRecommendation
+        navigateToRecommendation = navigateToRecommendation,
+        generateRecommendation = addPlanViewModel::generateRecommendation
     )
 }
 
 @Composable
 fun CreateSpendPlanContent(
     navigateToRecommendation: () -> Unit = {},
+    generateRecommendation: (recommendationRequest: RecommendationRequest) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -114,7 +121,18 @@ fun CreateSpendPlanContent(
         }
         ButtonApp(
             text = "GENERATE SPEND PLAN",
-            onClick = { navigateToRecommendation() },
+            onClick = {
+                generateRecommendation(
+                    RecommendationRequest(
+                        100_000,
+                        10_000,
+                        31.131231442,
+                        -8.19283911,
+                        10
+                    )
+                )
+//                navigateToRecommendation()
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)

@@ -96,8 +96,9 @@ fun TextInput(
                 )
             },
             textStyle = MaterialTheme.typography.subtitle1,
-            visualTransformation = if (isPassword) PasswordVisualTransformation()
-            else VisualTransformation.None
+            visualTransformation = if (isShow.value || !isPassword)
+                VisualTransformation.None else
+                PasswordVisualTransformation(),
         )
         AnimatedVisibility(
             visible = !errorMessage.isNullOrEmpty(),
