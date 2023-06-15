@@ -4,20 +4,17 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.budgetin.di.Injection
-import com.bangkit.budgetin.ui.screen.addplan.AddPlanViewModel
 import com.bangkit.budgetin.ui.screen.signin.SignInViewModel
 import com.bangkit.budgetin.ui.screen.signup.SignUpViewModel
-import com.bangkit.budgetin.ui.screen.spend.SpendViewModel
 
-class ViewModelFactory :
-    ViewModelProvider.NewInstanceFactory() {
-
+class ContextViewModelFactory(private val context: Context)
+    : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SpendViewModel::class.java)) {
-            return SpendViewModel() as T
-        } else if (modelClass.isAssignableFrom(AddPlanViewModel::class.java)) {
-            return AddPlanViewModel(Injection.provideRecommendationRepository()) as T
+        if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
+            return SignUpViewModel(Injection.provideAuthRepository(context)) as T
+        } else if(modelClass.isAssignableFrom(SignInViewModel::class.java)) {
+            return SignInViewModel(Injection.provideAuthRepository(context)) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

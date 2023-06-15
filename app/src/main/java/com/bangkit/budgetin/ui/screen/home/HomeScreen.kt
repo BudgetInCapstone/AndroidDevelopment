@@ -22,7 +22,7 @@ fun HomeScreen(
     navigateToRecommendation: () -> Unit = {},
 ) {
     // TODO: Cek apakah user punya plan
-    val isHavePlan = true
+    val isHavePlan = false
     if (isHavePlan)
         HomeContent(
             navigateToRecommendation = navigateToRecommendation
