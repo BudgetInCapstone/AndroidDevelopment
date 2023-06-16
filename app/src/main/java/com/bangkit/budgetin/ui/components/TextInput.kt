@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -19,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -35,6 +37,7 @@ fun TextInput(
     isPassword: Boolean = false,
     textFieldColors: TextFieldColors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
     inputValidation: (value: String) -> String? = { null },
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     var errorMessage by remember { mutableStateOf<String?>("") }
     val isShow = rememberSaveable { mutableStateOf(false) }
@@ -99,6 +102,7 @@ fun TextInput(
             visualTransformation = if (isShow.value || !isPassword)
                 VisualTransformation.None else
                 PasswordVisualTransformation(),
+            keyboardOptions = keyboardOptions
         )
         AnimatedVisibility(
             visible = !errorMessage.isNullOrEmpty(),

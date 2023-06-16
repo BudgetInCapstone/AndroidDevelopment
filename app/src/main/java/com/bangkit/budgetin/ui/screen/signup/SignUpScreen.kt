@@ -4,6 +4,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -16,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -130,7 +132,8 @@ fun SignUpContent(
                     ) "That's not valid email"
                     else null
                 },
-                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
@@ -147,6 +150,7 @@ fun SignUpContent(
                 },
                 isPassword = true,
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
 
             ButtonApp(
@@ -187,8 +191,11 @@ fun SignUpPreview() {
 }
 
 fun validateInput(signUpForm: SignUpRequest): Boolean {
-    return if (signUpForm.email.isEmpty()) false
+    return if (
+        signUpForm.email.isEmpty() ||
+        Patterns.EMAIL_ADDRESS.matcher(signUpForm.email).matches()
+    ) false
     else if (signUpForm.username.isEmpty()) false
     else if (signUpForm.nama.isEmpty()) false
-    else signUpForm.password.isNotEmpty()
+    else signUpForm.password.length >= 8
 }

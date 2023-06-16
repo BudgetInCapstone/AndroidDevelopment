@@ -43,6 +43,7 @@ fun Dropdown(
             textStyle = MaterialTheme.typography.h3,
             readOnly = true,
             value = selectedOptionText,
+            singleLine = true,
             onValueChange = {
                 selectedOptionText = it
             },
