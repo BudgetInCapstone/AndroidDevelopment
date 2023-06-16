@@ -14,7 +14,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://servicetwo-dot-capstone-project-387701.et.r.appspot.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
