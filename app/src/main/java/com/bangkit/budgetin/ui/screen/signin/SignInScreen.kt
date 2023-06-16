@@ -1,9 +1,11 @@
 package com.bangkit.budgetin.ui.screen.signin
 
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -15,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -107,7 +110,8 @@ fun SignInContent(
                     else if (!Patterns.EMAIL_ADDRESS.matcher(it).matches()) "That's not valid email"
                     else null
                 },
-                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
+                modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Text(text = "Password", style = MaterialTheme.typography.h3)
             TextInput(
@@ -124,6 +128,7 @@ fun SignInContent(
                 },
                 isPassword = true,
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
 
             Text(
@@ -194,6 +199,6 @@ fun SignInPreview() {
 }
 
 fun validateInput(value: SignInRequest): Boolean {
-    return if (value.email.isEmpty()) false
-    else value.password.isNotEmpty()
+    return if (value.email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(value.email).matches()) false
+    else value.password.length >= 8
 }

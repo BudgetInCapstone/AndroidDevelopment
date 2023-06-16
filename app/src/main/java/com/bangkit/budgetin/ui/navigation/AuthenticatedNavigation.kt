@@ -1,22 +1,24 @@
 package com.bangkit.budgetin.ui.navigation
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.bangkit.budgetin.R
 import com.bangkit.budgetin.ui.itemview.BottomNavigationItem
 import com.bangkit.budgetin.ui.screen.addplan.AddPlanScreen
@@ -84,15 +86,13 @@ fun AuthenticatedNavigation(
             ) {
                 if (currentRoute == Screen.Home.route) {
                     Text(
-                        text = "Welcome User123",
+                        text = "Welcome Kevin",
                         style = MaterialTheme.typography.h1
                     )
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_google),
-                        contentDescription = "profile picture",
-                        modifier = Modifier
-                            .size(30.dp),
-                        contentScale = ContentScale.Crop
+                    Icon(
+                        Icons.Default.AccountCircle,
+                        contentDescription = "User picture",
+                        modifier = Modifier.size(32.dp)
                     )
                 } else {
                     Text(
@@ -143,14 +143,19 @@ fun AuthenticatedNavigation(
             startDestination = Screen.Home.route,
 
             ) {
-            composable(Screen.Home.route) {
+            composable(
+                route = Screen.Home.route,
+                arguments = listOf(navArgument("success") { type = NavType.BoolType })
+            ) {arg ->
+                val success = arg.arguments?.getBoolean("success") ?: false
                 HomeScreen(
                     navigateToAddPlan = {
                         navController.navigate(Screen.AddPlan.route)
                     },
                     navigateToRecommendation = {
                         navController.navigate(Screen.Recommendation.route)
-                    }
+                    },
+                    success = success
                 )
             }
             composable(Screen.Spend.route) {
@@ -179,7 +184,7 @@ fun AuthenticatedNavigation(
             composable(Screen.Recommendation.route) {
                 RecommendedPlanScreen(
                     navigateToHome = {
-                        navController.navigate(Screen.Home.route) {
+                        navController.navigate(Screen.Home.createRoute(true)) {
                             popUpTo(Screen.Home.route) { inclusive = true }
                             launchSingleTop = true
                         }

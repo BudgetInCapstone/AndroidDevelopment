@@ -6,12 +6,16 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bangkit.budgetin.R
+import com.bangkit.budgetin.ui.ContextViewModelFactory
 import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.components.ProfileItemView
 import com.bangkit.budgetin.ui.itemview.ProfileGroupItem
@@ -21,17 +25,23 @@ import com.bangkit.budgetin.ui.theme.Teal400
 
 @Composable
 fun ProfileScreen(
-    navigateToSignin: () -> Unit = {}
+    navigateToSignin: () -> Unit = {},
+    profileViewModel: ProfileViewModel = viewModel(
+        factory = ContextViewModelFactory(LocalContext.current)
+    ),
 ) {
+    profileViewModel.isLogout.collectAsState().value.let {isLogout ->
+        if(isLogout) navigateToSignin()
+    }
     ProfileContent(
-        navigateToSignin =  navigateToSignin
+        logout = profileViewModel::logout
     )
 }
 
 @Composable
 fun ProfileContent(
     modifier: Modifier = Modifier,
-    navigateToSignin: () -> Unit = {}
+    logout: () -> Unit = {}
 ) {
     val profileItemList = listOf(
         ProfileGroupItem(
@@ -126,7 +136,7 @@ fun ProfileContent(
             text = "logout",
             modifier = Modifier
                 .padding(24.dp),
-            onClick = navigateToSignin
+            onClick = logout
         )
     }
 }

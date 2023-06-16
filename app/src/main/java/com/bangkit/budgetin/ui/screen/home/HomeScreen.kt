@@ -20,10 +20,9 @@ import com.bangkit.budgetin.ui.theme.*
 fun HomeScreen(
     navigateToAddPlan: () -> Unit = {},
     navigateToRecommendation: () -> Unit = {},
+    success: Boolean = false
 ) {
-    // TODO: Cek apakah user punya plan
-    val isHavePlan = false
-    if (isHavePlan)
+    if (success)
         HomeContent(
             navigateToRecommendation = navigateToRecommendation
         )
@@ -38,7 +37,6 @@ fun HomeContent(
     modifier: Modifier = Modifier,
     navigateToRecommendation: () -> Unit = {},
 ) {
-    // TODO: Diganti data dari API
     val transactionList = listOf(1, 2, 3, 4, 5, 6, 7)
     val recommendationList = listOf(1, 2, 3, 4)
 
