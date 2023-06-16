@@ -104,7 +104,7 @@ fun RecommendedPlanScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Card section
-                CardSection(budgetValue = budgetValue)
+                CardSection(budgetValue)
 
                 // Tab section
                 Row(
@@ -132,55 +132,14 @@ fun CardSection(budgetValue: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
-        elevation = 4.dp,
-        backgroundColor = MaterialTheme.colors.surface
+        elevation = 4.dp
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            // Section 1
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                // Rounded icon
-                Icon(
-                    Icons.Default.AccountCircle,
-                    contentDescription = stringResource(R.string.initial_income_icon),
-                    modifier = Modifier.size(32.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                // Title
-                Text(
-                    text = stringResource(R.string.initial_income_title),
-                    style = MaterialTheme.typography.h6
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Section 2
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colors.surface)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                ) {
-                    // Currency symbol
-                    Text(
-                        text = "Rp.",
-                        style = MaterialTheme.typography.h6
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    // Budget value
-                    Text(
-                        text = budgetValue,
-                        style = MaterialTheme.typography.h6
-                    )
-                }
-            }
-
-            // Section 3
-            Spacer(modifier = Modifier.height(16.dp))
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Rp $budgetValue",
+                style = MaterialTheme.typography.h5,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
     }
 }
