@@ -82,8 +82,10 @@ fun CreateSpendPlanContent(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissionMaps ->
         val isGranted = permissionMaps.values.reduce { acc, next -> acc || next }
-        if (isGranted) {
+        if (!isGranted) {
             Toast.makeText(context, "Permission denied", Toast.LENGTH_SHORT).show()
+        } else {
+            isRequested.value = true
         }
     }
 
@@ -127,7 +129,8 @@ fun CreateSpendPlanContent(
                         Spacer(modifier = Modifier.height(16.dp))
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
                                 text = "Rp.",
@@ -327,17 +330,17 @@ private fun checkPermission(
 
     if (granted) {
         fusedLocation.lastLocation.addOnSuccessListener { location: Location? ->
-            isRequested.value = false
             if (location != null)
                 coordinates.value = Coordinates(location.latitude, location.longitude)
         }
     } else {
-        isRequested.value = true
-        launcherMultiplePermissions.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
+        if(!isRequested.value){
+            launcherMultiplePermissions.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
             )
-        )
+        }
     }
 }

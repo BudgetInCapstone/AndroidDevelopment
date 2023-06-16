@@ -1,5 +1,6 @@
 package com.bangkit.budgetin.ui.screen.signup
 
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -41,6 +42,7 @@ fun SignUpScreen(
     ),
 ) {
     var loading by remember { mutableStateOf(false) }
+    var registerSuccess by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
     signUpViewModel.signUpResponse.collectAsState(null).let { response ->
@@ -54,13 +56,18 @@ fun SignUpScreen(
             }
             is UiState.Success -> {
                 loading = false
-                navigateToSignIn()
+                registerSuccess = true
             }
             else -> {
                 loading = false
             }
         }
     }
+
+    LaunchedEffect(key1 = registerSuccess ){
+        if(registerSuccess) navigateToSignIn()
+    }
+
     SignUpContent(
         navigateToSignIn = navigateToSignIn,
         signUp = signUpViewModel::signUp,
@@ -193,7 +200,7 @@ fun SignUpPreview() {
 fun validateInput(signUpForm: SignUpRequest): Boolean {
     return if (
         signUpForm.email.isEmpty() ||
-        Patterns.EMAIL_ADDRESS.matcher(signUpForm.email).matches()
+        !Patterns.EMAIL_ADDRESS.matcher(signUpForm.email).matches()
     ) false
     else if (signUpForm.username.isEmpty()) false
     else if (signUpForm.nama.isEmpty()) false

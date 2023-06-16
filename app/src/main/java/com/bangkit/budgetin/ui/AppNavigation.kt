@@ -41,7 +41,6 @@ fun AppNavigation(
                 navigateToSignIn = {
                     navController.navigate(Screen.SignIn.route) {
                         popUpTo(Screen.SignIn.route) { inclusive = true }
-                        launchSingleTop = true
                     }
                 }
             )

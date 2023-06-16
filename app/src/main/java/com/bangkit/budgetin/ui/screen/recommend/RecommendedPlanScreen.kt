@@ -143,7 +143,7 @@ fun CardSection() {
                     }
                     // Currency box
                     TextField(
-                        value = "5000", // Placeholder value, replace with your actual value or use state
+                        value = "1000000", // Placeholder value, replace with your actual value or use state
                         onValueChange = { /* Handle value change */ },
                         modifier = Modifier
                             .align(Alignment.CenterEnd)
