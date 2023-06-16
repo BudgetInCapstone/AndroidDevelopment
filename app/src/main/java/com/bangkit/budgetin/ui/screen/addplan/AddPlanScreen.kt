@@ -223,10 +223,10 @@ fun CreateSpendPlanContent(
                         radius = 2 * it
                     )
                 }
-                listRecommendationRequest.forEach {
-                    generateRecommendation(it)
-                    navigateToRecommendation()
-                }
+//                listRecommendationRequest.forEach {
+//                    generateRecommendation(it)
+//                }
+                navigateToRecommendation()
             },
             modifier = Modifier
                 .fillMaxWidth()

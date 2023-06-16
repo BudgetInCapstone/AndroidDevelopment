@@ -46,4 +46,13 @@ class AuthenticationRepository(
     fun isUserAuthenticated(): Flow<Boolean>{
         return store.getUserAuth
     }
+
+    suspend fun logout(): Boolean{
+        return try {
+            store.saveUserAuth(false)
+            true
+        }catch (_ : Exception){
+            false
+        }
+    }
 }
