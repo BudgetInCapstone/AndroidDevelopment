@@ -176,14 +176,16 @@ fun AuthenticatedNavigation(
                     }
                 )
             }
-            composable(Screen.Recommendation.route) {
+            composable(Screen.Recommendation.route) { backStackEntry ->
+                val budgetValue = backStackEntry.arguments?.getString("budget") ?: ""
                 RecommendedPlanScreen(
                     navigateToHome = {
                         navController.navigate(Screen.Home.route) {
                             popUpTo(Screen.Home.route) { inclusive = true }
                             launchSingleTop = true
                         }
-                    }
+                    },
+                    budgetValue = budgetValue
                 )
             }
         }

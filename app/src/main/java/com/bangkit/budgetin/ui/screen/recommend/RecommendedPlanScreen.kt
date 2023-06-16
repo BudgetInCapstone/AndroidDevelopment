@@ -49,6 +49,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -81,46 +82,11 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-//@OptIn(ExperimentalPagerApi::class)
-//@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-//@Composable
-//fun RecommendedPlanScreen(
-//    navigateToHome: () -> Unit = {}
-//) {
-//    Scaffold(
-//        content = {
-//            Column(
-//                modifier = Modifier.fillMaxSize(),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                // Card section
-//                CardSection()
-//
-//                // Tab section
-//                Row(
-//                    modifier = Modifier.fillMaxWidth(),
-//                    horizontalArrangement = Arrangement.Center
-//                ) {
-////                    TabSection()
-//                    TabRow()
-//                }
-//
-//                // Tab content
-////                TabContent()
-//            }
-//        },
-//        bottomBar = {
-//            ButtonSection(
-//                navigateToHome = navigateToHome
-//            )
-//        }
-//    )
-//}
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun RecommendedPlanScreen(
+    budgetValue: String,
     navigateToHome: () -> Unit = {}
 ) {
     val navController = rememberNavController()
@@ -131,12 +97,6 @@ fun RecommendedPlanScreen(
         TabItem.Monthly
     )
 
-//    BackHandler {
-//        if (pagerState.currentPage > 0) {
-//            pagerState.scrollToPage(0)
-//        }
-//    }
-
     Scaffold(
         content = {
             Column(
@@ -144,7 +104,7 @@ fun RecommendedPlanScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Card section
-                CardSection()
+                CardSection(budgetValue = budgetValue)
 
                 // Tab section
                 Row(
@@ -166,75 +126,8 @@ fun RecommendedPlanScreen(
     )
 }
 
-//@Composable
-//fun CardSection() {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(16.dp),
-//        elevation = 4.dp,
-//        backgroundColor = MaterialTheme.colors.surface
-//    ) {
-//        Column(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            // Section 1
-//            Row(verticalAlignment = Alignment.CenterVertically) {
-//                // Rounded icon
-//                Icon(
-//                    Icons.Default.AccountCircle,
-//                    contentDescription = stringResource(R.string.initial_income_icon),
-//                    modifier = Modifier.size(32.dp)
-//                )
-//                Spacer(modifier = Modifier.width(8.dp))
-//                // Title
-//                Text(
-//                    text = stringResource(R.string.initial_income_title),
-//                    style = MaterialTheme.typography.h6
-//                )
-//            }
-//            Spacer(modifier = Modifier.height(16.dp))
-//
-//            // Section 2
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .background(MaterialTheme.colors.surface)
-//            ) {
-//                Row(
-//                    verticalAlignment = Alignment.CenterVertically,
-//                    modifier = Modifier.padding(horizontal = 16.dp)
-//                ) {
-//                    // Currency symbol and dropdown arrow
-//                    Row(verticalAlignment = Alignment.CenterVertically) {
-//                        Text(
-//                            text = "Rp.",
-//                            style = MaterialTheme.typography.h6
-//                        )
-//                        Icon(
-//                            Icons.Default.ArrowDropDown,
-//                            contentDescription = stringResource(R.string.initial_income_icon),
-//                            modifier = Modifier.size(32.dp),
-//                        )
-//                    }
-//                    Spacer(modifier = Modifier.width(16.dp))
-//                    // Edit text
-//                    TextField(
-//                        value = "5000", // Placeholder value, replace with your actual value or use state
-//                        onValueChange = { /* Handle value change */ },
-//                        modifier = Modifier.fillMaxWidth()
-//                    )
-//                }
-//            }
-//
-//            // Section 3
-//            Spacer(modifier = Modifier.height(16.dp))
-//        }
-//    }
-//}
-
 @Composable
-fun CardSection() {
+fun CardSection(budgetValue: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -272,24 +165,16 @@ fun CardSection() {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
-                    // Currency symbol and dropdown arrow
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            text = "Rp.",
-                            style = MaterialTheme.typography.h6
-                        )
-                        Icon(
-                            Icons.Default.ArrowDropDown,
-                            contentDescription = stringResource(R.string.initial_income_icon),
-                            modifier = Modifier.size(32.dp),
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    // Edit text
-                    TextField(
-                        value = "5000", // Placeholder value, replace with your actual value or use state
-                        onValueChange = { /* Handle value change */ },
-                        modifier = Modifier.fillMaxWidth()
+                    // Currency symbol
+                    Text(
+                        text = "Rp.",
+                        style = MaterialTheme.typography.h6
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    // Budget value
+                    Text(
+                        text = budgetValue,
+                        style = MaterialTheme.typography.h6
                     )
                 }
             }
@@ -299,80 +184,6 @@ fun CardSection() {
         }
     }
 }
-
-//@Composable
-//fun TabSection() {
-//    val tabs = listOf(
-//        stringResource(R.string.tab_daily),
-//        stringResource(R.string.tab_weekly),
-//        stringResource(R.string.tab_monthly)
-//    )
-//    var selectedTabIndex by remember { mutableStateOf(0) }
-//
-//    ScrollableTabRow(
-//        selectedTabIndex = selectedTabIndex,
-//        modifier = Modifier
-//            .fillMaxWidth(),
-//        edgePadding = 16.dp,
-//        backgroundColor = MaterialTheme.colors.surface,
-//        indicator = { tabPositions ->
-//            TabRowDefaults.Indicator(
-//                modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-//                color = MaterialTheme.colors.primary
-//            )
-//        },
-//        contentColor = MaterialTheme.colors.primary,
-//    ) {
-//        tabs.forEachIndexed { index, title ->
-//            Tab(
-//                selected = selectedTabIndex == index,
-//                onClick = { selectedTabIndex = index },
-//                modifier = Modifier
-//                    .padding(vertical = 8.dp, horizontal = 16.dp)
-//            ) {
-//                Text(
-//                    text = title,
-//                )
-//            }
-//        }
-//    }
-//}
-//
-//@Composable
-//fun TabContent() {
-//    when (val selectedTabIndex = 0) {
-//        0 -> {
-//            DailyContent()
-//        }
-//
-//        1 -> {
-//            WeeklyContent()
-//        }
-//
-//        2 -> {
-//            MonthlyContent()
-//        }
-//    }
-//}
-//
-//
-//@Composable
-//fun DailyContent() {
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .padding(horizontal = 16.dp),
-//        verticalArrangement = Arrangement.spacedBy(4.dp)
-//    ) {
-//        // Card 1
-//        CardItem()
-//
-//        // Card 2
-//        CardItem()
-//
-//        // Add more cards as needed
-//    }
-//}
 
 @Composable
 fun CardItem() {
@@ -456,45 +267,12 @@ fun CardItem() {
     }
 }
 
-
-//@Composable
-//fun WeeklyContent() {
-//    // TODO: Implement the content for the Weekly tab, similar to DailyContent()
-//}
-//
-//@Composable
-//fun MonthlyContent() {
-//    // TODO: Implement the content for the Monthly tab, similar to DailyContent()
-//}
-
-//@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-//@ExperimentalPagerApi
-//@Composable
-//fun TabRow() {
-//
-//    val tabs = listOf(
-//        TabItem.Daily,
-//        TabItem.Weekly,
-//        TabItem.Monthly,
-//    )
-//
-//    val pagerState = rememberPagerState(pageCount = tabs.size)
-//
-//    Scaffold() {
-//        Column {
-//            Tabs(tabs = tabs, pagerState = pagerState)
-//            TabsContent(tabs = tabs, pagerState = pagerState)
-//        }
-//
-//    }
-//}
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabRow(tabs: List<TabItem>, pagerState: PagerState) {
     val scope = rememberCoroutineScope()
 
-    androidx.compose.material.TabRow(
+    TabRow(
         selectedTabIndex = pagerState.currentPage,
         backgroundColor = Color.White,
         contentColor = Color.Black,
@@ -519,37 +297,6 @@ fun TabRow(tabs: List<TabItem>, pagerState: PagerState) {
         }
     }
 }
-
-//@OptIn(ExperimentalPagerApi::class)
-//@Composable
-//fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
-//    val scope = rememberCoroutineScope()
-//    androidx.compose.material.TabRow(
-//        selectedTabIndex = pagerState.currentPage,
-//        backgroundColor = Color.Green,
-//        contentColor = Color.White,
-//        indicator = { tabPositions ->
-//            TabRowDefaults.Indicator(
-//                Modifier.pagerTabIndicatorOffset(pagerState, tabPositions),
-//                color = Color.White
-//            )
-//        }
-//    ) {
-//        tabs.forEachIndexed { index, tab ->
-//
-//            LeadingIconTab(
-//                selected = pagerState.currentPage == index,
-//                text = { Text(text = tab.title) },
-//                icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = "") },
-//                onClick = {
-//                    scope.launch {
-//                        pagerState.animateScrollToPage(index)
-//                    }
-//                },
-//            )
-//        }
-//    }
-//}
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -632,6 +379,6 @@ fun ButtonSection(
 @Composable
 fun RecommendedPlanScreenPreview() {
     BudgetInTheme {
-        RecommendedPlanScreen()
+//        RecommendedPlanScreen("50000")
     }
 }

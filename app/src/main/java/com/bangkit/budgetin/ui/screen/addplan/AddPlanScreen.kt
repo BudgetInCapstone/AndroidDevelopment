@@ -18,6 +18,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -51,23 +52,30 @@ import com.bangkit.budgetin.ui.components.ButtonApp
 import com.bangkit.budgetin.ui.theme.BudgetInTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.draw.clip
+import com.bangkit.budgetin.ui.screen.recommend.CardSection
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun AddPlanScreen(
-    navigateToRecommendation: () -> Unit = {},
+    navigateToRecommendation: (String) -> Unit = { _ -> },
 ) {
+    val budgetState = remember { mutableStateOf("") }
+
     CreateSpendPlanContent(
+        budgetValue = budgetState.value,
+        onBudgetValueChange = { newValue -> budgetState.value = newValue },
         navigateToRecommendation = navigateToRecommendation
     )
 }
 
 @Composable
 fun CreateSpendPlanContent(
-    navigateToRecommendation: () -> Unit = {}
+    budgetValue: String,
+    onBudgetValueChange: (String) -> Unit = { _ -> },
+    navigateToRecommendation: (String) -> Unit = { _ -> }
 ) {
-    val budgetState = remember { mutableStateOf("") }
     val spendPlanList = remember { mutableStateListOf<SpendPlan>() }
     val expandedCategoryState = remember { mutableStateOf(false) }
     val expandedTypeState = remember { mutableStateOf(false) }
@@ -96,8 +104,8 @@ fun CreateSpendPlanContent(
                             )
                             // Editable TextField for budget input
                             TextField(
-                                value = budgetState.value,
-                                onValueChange = { budgetState.value = it },
+                                value = budgetValue,
+                                onValueChange = onBudgetValueChange,
                                 modifier = Modifier
                                     .align(Alignment.CenterEnd)
                                     .padding(start = 8.dp),
@@ -222,13 +230,14 @@ fun CreateSpendPlanContent(
                 }
             }
         }
-        ButtonApp(
-            text = "GENERATE SPEND PLAN",
-            onClick = { navigateToRecommendation() },
+        Button(
+            onClick = { navigateToRecommendation.invoke(budgetValue) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
-        )
+        ) {
+            Text(text = "GENERATE SPEND PLAN")
+        }
     }
 }
 
@@ -247,9 +256,9 @@ fun SpendPlanCard(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
-            Column(modifier = Modifier.padding(start = 16.dp)) {
+            Column {
                 Text(
                     text = spendPlan.category.toString(),
                     style = MaterialTheme.typography.subtitle1,
@@ -260,38 +269,20 @@ fun SpendPlanCard(
                         expanded = spendPlan.expanded,
                         onDismissRequest = { spendPlan.expanded = false }
                     ) {
-                        DropdownMenuItem(
-                            onClick = {
-                                spendPlan.type = PlanType.DAILY
-                                spendPlan.expanded = false
+                        PlanType.values().forEach { planType ->
+                            DropdownMenuItem(
+                                onClick = {
+                                    spendPlan.type = planType
+                                    spendPlan.expanded = false
+                                }
+                            ) {
+                                Text(text = planType.name)
                             }
-                        ) {
-                            Text(text = "Daily")
-                        }
-                        DropdownMenuItem(
-                            onClick = {
-                                spendPlan.type = PlanType.WEEKLY
-                                spendPlan.expanded = false
-                            }
-                        ) {
-                            Text(text = "Weekly")
-                        }
-                        DropdownMenuItem(
-                            onClick = {
-                                spendPlan.type = PlanType.MONTHLY
-                                spendPlan.expanded = false
-                            }
-                        ) {
-                            Text(text = "Monthly")
                         }
                     }
                 }
                 Text(
-                    text = when (spendPlan.type) {
-                        PlanType.DAILY -> "Daily"
-                        PlanType.WEEKLY -> "Weekly"
-                        PlanType.MONTHLY -> "Monthly"
-                    },
+                    text = spendPlan.type.name,
                     style = MaterialTheme.typography.caption,
                     color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
                     modifier = Modifier.padding(top = 4.dp)
